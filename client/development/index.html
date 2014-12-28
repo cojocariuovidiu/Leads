@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Lead Manager</title>
+
+    <!-- BootStrap -->
+    <link  href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css"/>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="libs/toastr/toastr.min.css"/>
+    <!-- angular-select -->
+    <link href="libs/angular-ui-select/dist/select.min.css" rel="stylesheet" />
+
+    <!-- Leads Main Styles -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <!-- jQuery -->
+    <script src="libs/jquery/dist/jquery.js"></script>
+    <!-- Bootstrap -->
+    <script src="libs/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Toastr -->
+    <script src="libs/toastr/toastr.js"></script>
+
+    <!-- Angular Core -->
+    <script src="libs/lodash/dist/lodash.js"></script>
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular-resource/angular-resource.js"></script>
+    <script src="libs/angular-route/angular-route.js"></script>
+    <script src="libs/angular-messages/angular-messages.js"></script>
+    <script src="libs/angular-aria/angular-aria.js"></script>
+
+    <!-- 3rd party Add Ons -->
+    <!-- Angular UI -->
+    <script src="libs/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="libs/angular-ui-utils/ui-utils.js"></script>
+    <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+
+
+    <!-- Angular UI - Select -->
+    <script src="libs/angular-ui-select/dist/select.js"></script>
+
+    <!-- App Core -->
+    <script src="app/app-modules.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/app-routes.js"></script>
+
+
+    <!-- Common Services -->
+    <script src="app/common/service/xs-angular-cache-service.js"></script>
+    <script src="app/common/service/cache-clients.js"></script>
+    <script src="app/common/service/notify-service.js"></script>
+
+    <!-- Model Services -->
+    <script src="app/common/service/access-service.js"></script>
+    <script src="app/common/service/login-service.js"></script>
+    <script src="app/common/service/register-service.js"></script>
+    <script src="app/common/service/user-service.js"></script>
+    <script src="app/common/service/lead-service.js"></script>
+
+    <!-- Shared XyberSolve Reuse Widgets -->
+    <script src="app/common/directive/xybersolve/xs-ui-select.js"></script>
+    <script src="app/common/directive/xybersolve/xs-angular-wizard/src/xs-wizard-widget.js"></script>
+    <script src="app/common/directive/xybersolve/xs-angular-action-buttons/src/xs-action-buttons-directive.js"></script>
+    <script src="app/common/directive/xybersolve/xs-confirm-password/xs-confirm-password-directive.js"></script>
+
+    <!-- Application Modules -->
+    <!-- Home and Navbar Modules -->
+    <script src="app/home/home-controller.js"></script>
+    <script src="app/navbar/navbar-directive.js"></script>
+    <script src="app/navbar/navbar-login-directive.js"></script>
+
+    <!-- Access Modules -->
+    <script src="app/access/access-modules.js"></script>
+    <script src="app/access/access-routes.js"></script>
+    <script src="app/access/login/login-controller.js"></script>
+    <script src="app/access/register/register-controller.js"></script>
+    <script src="app/access/register/email-dupe-validator-directive.js"></script>
+
+    <!-- Lead Module -->
+    <script src="app/lead/lead-modules.js"></script>
+    <script src="app/lead/lead-routes.js"></script>
+    <script src="app/lead/list/lead-list-controller.js"></script>
+    <script src="app/lead/edit/lead-edit-controller.js"></script>
+
+    <!-- Settings Module -->
+    <script src="app/settings/settings-modules.js"></script>
+    <script src="app/settings/settings-routes.js"></script>
+    <script src="app/settings/main/settings-main-controller.js"></script>
+
+    <style>
+
+        body {
+            padding: 54px 0 0 0;
+            background-color: #eeeeee;
+        }
+
+    </style>
+
+</head>
+
+<body ng-app="app">
+
+<div class="container-fluid" style="padding-top:0px;">
+    <ld-navbar></ld-navbar>
+
+    <div id="content" class="content">
+        <div ui-view
+             style="min-height:400px">
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
