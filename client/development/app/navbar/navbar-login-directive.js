@@ -16,7 +16,7 @@
               $state.go('access.login');
             };
             $scope.login = function () {
-              $state.go('access.login')
+              $state.go('access.login');
             };
           }
         };

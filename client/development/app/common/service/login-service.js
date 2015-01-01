@@ -86,7 +86,7 @@
           $rootScope.user.isLoggedIn = false;
         }
         function isLoggedIn(){
-          return ($rootScope.user && $rootScope.user.isLoggedIn)
+          return ($rootScope.user && $rootScope.user.isLoggedIn);
         }
         // -----------------------------------------
         // READ & SAVE Routines

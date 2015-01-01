@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app')
+    .module('app.access')
     .controller('RegisterCtrl', ['$state', 'userSvc', 'notifySvc', RegisterCtrl]);
   function       RegisterCtrl(    $state,   userSvc,   notifySvc) {
     var vm = this;

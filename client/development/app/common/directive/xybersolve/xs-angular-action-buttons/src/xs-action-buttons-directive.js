@@ -70,6 +70,6 @@
       };
 
 
-    }])
+    }]);
 
 })(window, window.angular);

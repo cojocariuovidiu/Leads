@@ -42,7 +42,7 @@
               controller: 'UserEditCtrl as userEdit'
             }
           }
-        })
+        });
   }]);
 
 })(window, window.angular);

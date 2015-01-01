@@ -1,5 +1,4 @@
-(function () {
-  'use strict';
+(function (window, angular, localStorage, undefined) {  'use strict';
 
   angular
     .module('xs.cache', [])
@@ -80,6 +79,6 @@
       };
     }]);
 
-})();
+})(window, window.angular, window.localStorage);
 
 

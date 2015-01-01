@@ -1,7 +1,8 @@
 (function (window, angular) {
   'use strict';
 
-  angular.module('app', [
+  angular
+    .module('app', [
       'ngRoute',
       'ngMessages',
       'ui.router',
