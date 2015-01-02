@@ -1,0 +1,46 @@
+<div class="well well-sm">
+    <div class="row">
+        <div class="col-xs-3">
+
+            <div class="input-group">
+                <input type="text"
+                       ng-change="leadList.onChange()"
+                       class="form-control input-md"
+                       placeholder='Search'
+                       ng-model="leadList.searchByName">
+            </div>
+
+        </div>
+
+        <div class="col-xs-2">
+            <select class="form-control input-md"
+                    ng-model="leadList.filterByCode"
+                    ng-options="t.type as t.type for t in leadList.leadTypes"
+                    default-text="Type">
+            </select>
+
+        </div>
+        <!--
+        <div class="col-xs-4">
+
+            <select class="form-control input-sm"
+                    ng-model="leadList.filterByAction"
+                    ng-options="a.action as a.action for a in leadList.actions | orderBy:'action'"
+                    default-text="Action">
+            </select>
+
+        </div>
+        -->
+        <div class="col-xs-7"></div>
+
+        <div class="col-xs-2">
+            <div class="pull-right">
+                <button class="btn btn-default btn-md"
+                        title="Clear all search filters"
+                        ng-click="leadList.clearFilters()">
+                    <i class="fa fa-refresh"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>
