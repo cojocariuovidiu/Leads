@@ -1,6 +1,8 @@
 *.DS_Store
 node_modules
 screenshots
+undefinedapp
+archives
 archive
 archive.txt
 database
@@ -14,15 +16,16 @@ test
 temp.*
 .temp
 .tmp
-client/development/.temp
-client/development/temp
 mongodump*
-archive
 dist
 about.txt
 *.sh
 *.out
 *.err
+*.css
+client/build
+client/development/.temp
+client/development/temp
 client/development/libs/
-client/development/app/lead
+
 
