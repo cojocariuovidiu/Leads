@@ -1,13 +1,10 @@
-(function () {
-  'use strict';
+(function (window, angular, undefined) {  'use strict';
 
   angular
     .module('xs.ui.wizard', [])
     .value('XS_WIZARD_TEMPLATE_DIR', './../template') // user configurable
 
-    .controller('XSSampleCtrl',['$scope','$rootScope',
-
-      function($scope, $rootScope){
+    .controller('XSSampleCtrl',[function(){
 
         var vm = this;
         vm.show = function(key, state) {
@@ -129,4 +126,4 @@
 
   }]);
 
-})();
+})(window, window.angular);

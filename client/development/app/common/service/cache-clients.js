@@ -14,7 +14,7 @@
     }])
     .factory('debugCacheSvc', ['xsCacheFactory', function(xsCacheFactory) {
       return xsCacheFactory('debug', 500);
-    }])
+    }]);
 
 
 })(window, window.angular);

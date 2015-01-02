@@ -22,7 +22,7 @@
             url: '/login',
             templateUrl: 'app/access/register/register.html',
             controller: 'RegisterCtrl as register'
-          })
+          });
   }]);
 
 })(window, window.angular);
