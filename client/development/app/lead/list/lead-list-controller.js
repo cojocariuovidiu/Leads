@@ -11,6 +11,7 @@
         var vm = this;
         vm.leads = leads;
         vm.leadTypes = leadSvc.leadTypes;
+        vm.ranks = leadSvc.ranks;
 
         function renewLead(){
           vm.lead = new leadSvc();
@@ -31,7 +32,7 @@
         };
         vm.clearFilters = function() {
           vm.searchByName = '';
-          vm.filterByCode = undefined;
+          vm.filterByRank = undefined;
         };
         vm.clearFilters(); // initialize
 

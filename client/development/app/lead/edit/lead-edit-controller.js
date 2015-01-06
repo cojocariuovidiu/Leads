@@ -14,6 +14,7 @@
          Lead Routines
          */
         vm.lead = lead;
+        vm.ranks = leadSvc.ranks;
 
         // save new leads
         vm.update = function(cb) {
