@@ -9,8 +9,8 @@
         var vm = this;
         vm.exitFlag = false;
         vm.tabs =[
-          {heading:'Codes', state:'settings.codes', active: true},
           {heading:'Tracking', state:'settings.tracking', active: false},
+          {heading:'Ranking', state:'settings.ranking', active: true},
           {heading:'User', state:'settings.user', active: false}
         ];
         vm.go = function(state) {
