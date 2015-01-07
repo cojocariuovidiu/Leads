@@ -1,0 +1,46 @@
+    <div class="form-group">
+        <label class="control-label col-xs-2" for="lead-info">Info</label>
+        <div class="col-xs-10">
+            <input class="form-control" type="text" ng-model="leadEdit.lead.info" id="lead-info" placeholder="Name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-2" for="lead-notes">Notes</label>
+        <div class="col-xs-10">
+            <input class="form-control" type="text" ng-model="leadEdit.lead.notes" id="lead-notes" placeholder="Reference">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-2" for="lead-rank">Rank</label>
+        <div class="col-xs-3">
+            <select class="form-control input-md"
+                    name="leadRank"
+                    id="lead-rank"
+                    ng-model="leadEdit.lead.rank"
+                    ng-options="r.rank as r.rank for r in leadEdit.ranks"
+                    ng-change="onChange();"
+                    default-text="Rank">
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-2" for="lead-archive">Archive</label>
+        <div class="col-xs-3">
+            <input type="checkbox"
+                   class="checkbox checkbox-inline"
+                   name="leadArchive"
+                   id="lead-archive"
+                   readonly="true"
+                   ng-value="'active'"
+                   ng-true-value="'archived'"
+                   ng-false-value="'active'"
+                   ng-model="leadEdit.lead.archive">
+            Archive
+        </div>
+    </div>
+
+    <hr />
+

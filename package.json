@@ -31,7 +31,7 @@
     "build:prod": "NODE_ENV=production gulp build",
     "start:dev": "export NODE_ENV=development && node ./leads-server.js",
     "start:prod": "export NODE_ENV=production && node ./leads-server.js",
-    "nohup": "export NODE_ENV=production && nohup node ./leads-server.js &",
+    "start:nohup": "export NODE_ENV=production && nohup node ./leads-server.js &",
     "forever": "export NODE_ENV=production && forever start leads-server.js",
     "gulp": "gulp",
     "archive": "gulp archive:project",

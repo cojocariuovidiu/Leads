@@ -15,10 +15,10 @@
         {type: 'Meeting'},
         {type: 'Cold Call'},
         {type: 'Interest'},
+        {type: 'Research'},
         {type: 'Accept'},
         {type: 'Decline'}
       ];
-
       Attribute.leadTypes = [
         {type: 'None'},
         {type: 'Doctor'},
@@ -28,6 +28,12 @@
         {type: 'Realtor'},
         {type: 'Office'},
         {type: 'Gallery'}
+      ];
+      Attribute.ranks = [
+        {type: 'Hot'},
+        {type: 'Warm'},
+        {type: 'Cool'},
+        {type: 'Cold'},
       ];
 
       return Attribute;

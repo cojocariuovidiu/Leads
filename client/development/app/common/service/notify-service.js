@@ -1,5 +1,4 @@
-(function (window, angular) {
-  'use strict';
+(function (window, angular) {  'use strict';
 
   angular
     .module('app.services')

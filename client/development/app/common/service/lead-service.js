@@ -22,6 +22,7 @@
         {type: 'Meeting'},
         {type: 'Cold Call'},
         {type: 'Interest'},
+        {type: 'Research'},
         {type: 'Accept'},
         {type: 'Decline'}
       ];
@@ -35,6 +36,13 @@
         {type: 'Realtor'},
         {type: 'Office'},
         {type: 'Gallery'}
+      ];
+      Lead.ranks = [
+        {rank: 'Hot'},
+        {rank: 'Warm'},
+        {rank: 'Cool'},
+        {rank: 'Cold'},
+        {rank: 'Dead'}
       ];
 
       return Lead;

@@ -11,7 +11,9 @@ module.exports = function (mongoWrap) { 'use strict';
 
     // db keys on owner
     if(req.user){
-      req.owner = req.user.username;
+      // user's unique identifier to key DB records
+      req.owner = req.user.email;
+      //req.owner = req.user.username;
     }
     next();
   };
