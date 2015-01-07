@@ -145,7 +145,6 @@ var paths = {
 
 };
 
-
 gutil.log('Gulp running in: ' + environ);
 
 gulp
@@ -209,7 +208,6 @@ gulp
       .pipe(rename('app.css'))
       .pipe(gulp.dest(dev.css));
   })
-
   .task('css', function() {
     // concatenate & minify style CSS files
     logTask('css', paths.libCSS.concat(paths.appCSS), prod.base);

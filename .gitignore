@@ -27,7 +27,7 @@ client/build
 client/development/.temp
 client/development/temp
 client/development/libs/
-client/production
+client/production/
 
 
 
