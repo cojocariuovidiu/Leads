@@ -12,11 +12,27 @@
         //
         reminder.remove().then(function(result) {
           if(result.success === true){
-            notifySvc.success('Successfully delete reminder.');
+            notifySvc.success('Deleted reminder.');
             var index = vm.reminders.indexOf(reminder);
             vm.reminders.splice(index, 1);
           } else {
             notifySvc.error('Oops! Unable to delete reminder.');
+          }
+        });
+      };
+
+      vm.toggleClosed = function(item){
+        //
+        // Set standalone reminder closed/open
+        //
+        var copy = angular.copy(item);
+        var state = copy.reminders.closed;
+        var stateMsg = state ? 'closed' : 'open';
+        copy.toggleClosed().then(function(result) {
+          if(result.success === true){
+            notifySvc.success('Set reminder to "' + stateMsg + '".');
+          } else {
+            notifySvc.error('Unable to set reminder to "' + stateMsg + '".');
           }
         });
       };

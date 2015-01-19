@@ -10,11 +10,15 @@
         <th>
             Type
         </th>
-        <th class="hidden-xs">
+        <th>
             What
         </th>
-        <th class="hidden-xs hidden-sm">
-            Result
+        <th>
+            Notes
+        </th>
+
+        <th width="5%">
+            Done
         </th>
 
     </tr>
@@ -31,18 +35,28 @@
         <td>
             {{item.reminders.type}}
         </td>
+
+        <td class="hidden-xs">
+            {{item.reminders.what}}
+        </td>
+
         <td class="hidden-xs">
             {{item.reminders.notes}}
         </td>
+
         <td class="hidden-xs hidden-sm">
-            {{item.reminders.result}}
+            <input type="checkbox"
+                   class="checkbox checkbox-inline"
+                   ng-value="false"
+                   ng-model="item.reminders.closed"
+                   ng-change="reminderMain.toggleClosed(item);">
         </td>
         <td>
             <xs-action-buttons has-delete="true"
                                on-delete-confirm="reminderMain.delete(item)"
                                delete-confirm-text="Confirm"
                                delete-cancel-text="Cancel"
-                               button-size="'sm'">
+                               button-size="'xs'">
 
             </xs-action-buttons>
 
