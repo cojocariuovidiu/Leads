@@ -15,11 +15,23 @@
                 <li ng-class="{active: isActive('/leads')}">
                     <a ui-sref="leads.list">Leads</a>
                 </li>
-                <!--
-                <li ng-class="{active: isActive('/settings')}">
-                    <a ui-sref="settings">Settings</a></li>
+
+                <li ng-class="{active: isActive('/tracking')}">
+                    <a ui-sref="tracking">Tracking</a></li>
                 <li class="divider"></li>
-                -->
+
+                <li ng-class="{active: isActive('/reminders')}">
+                    <a ui-sref="reminders">Reminders</a></li>
+                <li class="divider"></li>
+
+                <li ng-class="{active: isActive('/report')}">
+                    <a ui-sref="report.menu">Reports</a></li>
+                <li class="divider"></li>
+
+                <li ng-class="{active: isActive('/settings')}">
+                    <a ui-sref="settings.user">Settings</a></li>
+                <li class="settings"></li>
+
             </ul>
             <ld-navbar-login></ld-navbar-login>
         </div>

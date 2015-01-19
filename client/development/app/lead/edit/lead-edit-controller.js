@@ -4,9 +4,9 @@
   angular
     .module('app.lead')
     .controller('LeadEditCtrl', [
-               '_','leadCacheSvc','notifySvc', 'leadSvc', 'lead',
+               '_', '$state', 'leadCacheSvc','notifySvc', 'attributeSvc', 'trackingSvc', 'reminderSvc' ,'leadSvc', 'lead',
 
-      function (_ , leadCacheSvc, notifySvc, leadSvc, lead ) {
+      function (_ , $state , leadCacheSvc, notifySvc, attributeSvc, trackingSvc, reminderSvc, leadSvc, lead ) {
 
         var vm = this;
 
@@ -14,58 +14,70 @@
          Lead Routines
          */
         vm.lead = lead;
-        vm.ranks = leadSvc.ranks;
+        vm.ranks = attributeSvc.ranks;
 
-        // save new leads
-        vm.update = function(cb) {
+        // save or update leads
+        // shared by sub-document updates
+        function updateLead(item , cb){
           var copy = angular.copy(vm.lead);
           copy.update().then(function(result) {
             if(result.success===true){
-              notifySvc.success('Successfully saved "lead".');
+              notifySvc.success('Successfully updated "' + item + '".');
+              if(cb) cb();
             } else {
-              notifySvc.error('Oops! Unable to save "lead"!');
+              notifySvc.error('Oops! Unable to update "' + item + '"!');
             }
-            if(cb) cb(result.success);
+          });
+        }
+        // event: update main lead
+        vm.update = function() {
+          updateLead('lead', function() {
+            $state.go('leads.list');
           });
         };
-
         /* ---------------------------------------------------------
          Tracking Routines
          */
-        vm.trackingTypes = leadSvc.trackingTypes;
+        vm.trackingTypes = attributeSvc.trackingTypes;
+        vm.track = new trackingSvc();
 
-        function refreshTrack(){
-          vm.track = {
-            when: undefined,
-            what: undefined,
-            notes: undefined,
-            result: undefined
-          };
-        }
-        refreshTrack();
-
-        // add tracking event into lead.tracking array
-        // update lead on server
-        // refresh new tracking event
-        vm.addTracking = function () {
-          if(! vm.lead.tracking) vm.lead.tracking = [];
-          vm.lead.tracking.unshift(vm.track);
-          vm.update(function() {
-            refreshTrack();
+        vm.addTracking = function() {
+          // keep business logic in service
+          vm.lead.addTracking(vm.track);
+          // update the lead (parent document)
+          updateLead('tracking', function() {
+            vm.track = new trackingSvc();
+            //$state.go('leads.list');
           });
         };
 
-        // remove tracking event from lead.tracking array
-        // remove from leads arry locally
-        // update lead on server
         vm.deleteTracking = function(track) {
-          var index = vm.lead.tracking.indexOf(track);
-          vm.lead.tracking.splice(index, 1);
-          vm.update(function() {
-            // finished Lead update
+          vm.lead.deleteTracking(track);
+          updateLead('tracking', function() {
+            //$state.go('leads.list');
+          })
+        };
+
+        /* ---------------------------------------------------------
+         Reminder Routines
+         */
+        vm.reminderTypes = attributeSvc.reminderTypes;
+        vm.reminder = new reminderSvc();
+
+        vm.addReminder = function () {
+          vm.lead.addReminder(vm.reminder);
+          updateLead('reminder', function() {
+            vm.reminder = new reminderSvc();
+            //$state.go('leads.list');
           });
         };
 
+        vm.deleteReminder = function(reminder) {
+          vm.lead.deleteReminder(reminder);
+          updateLead('reminder', function() {
+            //$state.go('leads.list');
+          });
+        };
 
       }]);
 })(window, window.angular);

@@ -12,75 +12,25 @@
                 Welcome to <span style="font-weight:bold;">Lead Manager</span>
             </h4>
         </li>
-        <!--
+
         <li class="list-group-item list-group-item-info">
-            Logged in as: <span style="font-weight:bold;">{{home.user.username}}</span>
+            Logged in as: <span class="pull-right" style="font-weight:bold;padding-right:15px;">{{home.username}}</span>
         </li>
-        -->
+
         <li class="list-group-item">
             Leads
-            <span class="badge badge-important">{{home.leads.length}}</span>
-        </li>
-        <!--
-        <li class="list-group-item">
-            Display Locations
-            <span class="badge badge-important">{{home.locations}}</span>
-        </li>
-        <li class="list-group-item">
-            Prints Sold
-            <span class="badge badge-info">{{home.sold}}</span>
+            <span class="badge badge-important">{{home.leads}}</span>
         </li>
 
         <li class="list-group-item">
-            Current Prints
-            <table class="table-bordered table-responsive table-condensed table-striped"
-                   width="100%"
-                   style="margin-top:6px;" >
-                <tr ng-repeat="prints in home.printsByLocation">
-                    <td>
-                        {{prints._id}}
-                    </td>
-                    <td class="text-right">
-                        {{prints.totalCount}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right" style="font-weight: bold;">
-                        Total:
-                    </td>
-                    <td class="text-right">
-                        <span style="font-weight:bold;">{{home.prints}}</span>
-                    </td>
-                </tr>
-            </table>
+            Reminders
+            <span class="badge badge-important">{{home.reminders}}</span>
         </li>
+
         <li class="list-group-item">
-            Current Leads
-            <span class="badge badge-important"></span>
-            <table class="table-bordered table-responsive table-condensed table-striped"
-                   width="100%"
-                   style="margin-top:6px;" >
-                <tr ng-repeat="interest in home.leadsByInterest">
-                    <td>
-                        {{interest._id}}
-                    </td>
-                    <td class="text-right">
-                        {{interest.total}}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-right" style="font-weight: bold;">
-                        Total:
-                    </td>
-                    <td class="text-right">
-
-                        <span style="font-weight:bold;">{{home.leads}}</span>
-                    </td>
-                </tr>
-
-            </table>
+            Tracking
+            <span class="badge badge-important">{{home.tracking}}</span>
         </li>
-        -->
     </ul>
 
 </div>

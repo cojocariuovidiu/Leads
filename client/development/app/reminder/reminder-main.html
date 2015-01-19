@@ -1,0 +1,53 @@
+<table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
+    <thead>
+    <tr>
+        <th width="10%">
+            When
+        </th>
+        <th width="10%">
+            Who
+        </th>
+        <th>
+            Type
+        </th>
+        <th class="hidden-xs">
+            What
+        </th>
+        <th class="hidden-xs hidden-sm">
+            Result
+        </th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="item in reminderMain.reminders">
+        <td>
+            {{item.reminders.when | date:'yyyy-MM-dd'}}
+        </td>
+        <td>
+            {{item.name}}
+        </td>
+        <td>
+            {{item.reminders.type}}
+        </td>
+        <td class="hidden-xs">
+            {{item.reminders.notes}}
+        </td>
+        <td class="hidden-xs hidden-sm">
+            {{item.reminders.result}}
+        </td>
+        <td>
+            <xs-action-buttons has-delete="true"
+                               on-delete-confirm="reminderMain.delete(item)"
+                               delete-confirm-text="Confirm"
+                               delete-cancel-text="Cancel"
+                               button-size="'sm'">
+
+            </xs-action-buttons>
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>

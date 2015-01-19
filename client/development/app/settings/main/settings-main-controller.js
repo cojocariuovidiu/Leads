@@ -2,16 +2,15 @@
 
   angular
     .module('app.settings')
-    .controller('SettingsMainCtrl', [
-              '$rootScope', '$state',
+    .controller('SettingsMainCtrl', ['$rootScope', '$state',
       function($rootScope, $state) {
 
         var vm = this;
         vm.exitFlag = false;
         vm.tabs =[
           {heading:'Tracking', state:'settings.tracking', active: false},
-          {heading:'Ranking', state:'settings.ranking', active: true},
-          {heading:'User', state:'settings.user', active: false}
+          {heading:'Reminder', state:'settings.reminder', active: false},
+          {heading:'User', state:'settings.user', active: true}
         ];
         vm.go = function(state) {
           if(vm.exitFlag) return;

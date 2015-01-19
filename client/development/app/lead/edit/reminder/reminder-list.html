@@ -1,15 +1,3 @@
-<!--
-<div class="row" style="margin-bottom:10px;">
-    <div class="col-xs-12">
-        <button type="button"
-                class="btn btn-primary btn-sm pull-right"
-                ng-click="leadEdit.save()">
-            Save
-        </button>
-    </div>
-</div>
--->
-
 <table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
     <thead>
     <tr>
@@ -20,13 +8,13 @@
             When
         </th>
         <th>
+            Type
+        </th>
+        <th>
             What
         </th>
         <th class="hidden-xs">
             Notes
-        </th>
-        <th class="hidden-xs hidden-sm">
-            Result
         </th>
         <th>
             Delete
@@ -34,44 +22,39 @@
 
     </tr>
     </thead>
-
     <tbody>
     <tr>
         <td>
             <button class="btn btn-md btn-primary"
-                    ng-click="leadEdit.addTracking();">
+                    ng-click="leadEdit.addReminder();">
                 <i class="fa fa-plus"></i>
             </button>
         </td>
         <td>
             <input type="date"
-                   ng-model="leadEdit.track.when"
+                   ng-model="leadEdit.reminder.when"
                    class="form-control input-md">
         </td>
         <td>
-            <select ng-options="t.type as t.type for t in leadEdit.trackingTypes"
-                    ng-model="leadEdit.lead.track.type"
+            <select ng-options="t.type as t.type for t in leadEdit.reminderTypes"
+                    ng-model="leadEdit.reminder.type"
+                    default-text="Type"
                     class="form-control"></select>
-            <!--
-            <input type="text"
-                   ng-model="leadEdit.track.what"
-                   class="form-control editable-input input-md"
-                   placeholder="What">
-            -->
         </td>
 
         <td class="hidden-xs">
             <input type="text"
-                   ng-model="leadEdit.track.notes"
+                   ng-model="leadEdit.reminder.what"
                    class="form-control editable-input input-md"
-                   placeholder="Notes">
+                   placeholder="Reminder info...">
         </td>
 
-        <td class="hidden-xs hidden-sm">
+
+        <td class="hidden-xs">
             <input type="text"
-                   ng-model="leadEdit.track.result"
+                   ng-model="leadEdit.reminder.notes"
                    class="form-control editable-input input-md"
-                   placeholder="Result">
+                   placeholder="Notes">
         </td>
 
         <td>
@@ -80,7 +63,7 @@
 
     </tr>
 
-    <tr ng-repeat="track in leadEdit.lead.tracking">
+    <tr ng-repeat="reminder in leadEdit.lead.reminders">
 
         <td>
             &nbsp;
@@ -92,22 +75,27 @@
             -->
         </td>
         <td>
-            {{track.when | date:'yyyy-MM-dd'}}
+            {{reminder.when | date:'yyyy-MM-dd'}}
         </td>
 
         <td>
-            {{track.what}}
+            {{reminder.location}}
         </td>
+
+        <td>
+            {{reminder.what}}
+        </td>
+
         <td class="hidden-xs">
-            {{track.notes}}
+            {{reminder.notes}}
         </td>
         <td class="hidden-xs hidden-sm">
-            {{track.result}}
+            {{reminder.result}}
         </td>
 
         <td>
             <xs-action-buttons has-delete="true"
-                               on-delete-confirm="leadEdit.deleteTracking(track)"
+                               on-delete-confirm="leadEdit.deleteReminder(reminder)"
                                button-size="'sm'">
 
             </xs-action-buttons>
