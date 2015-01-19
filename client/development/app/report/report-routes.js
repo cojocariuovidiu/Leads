@@ -15,7 +15,7 @@
         url: '/menu',
         templateUrl: 'app/report/menu/report-menu.html',
         controller: 'ReportMenuCtrl as reportMenu'
-      })
+      });
   }
 
 })(window, window.angular);

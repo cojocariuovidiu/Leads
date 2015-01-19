@@ -13,13 +13,6 @@
         return this.$delete({id: this._id, reminder: angular.toJson(this.reminders)});
       };
 
-      Reminder.model = {
-        when: undefined,
-        type: undefined,
-        what: undefined,
-        notes: undefined
-      };
-
       return Reminder;
 
     }]);

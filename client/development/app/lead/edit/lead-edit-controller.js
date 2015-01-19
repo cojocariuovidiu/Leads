@@ -55,7 +55,7 @@
           vm.lead.deleteTracking(track);
           updateLead('tracking', function() {
             //$state.go('leads.list');
-          })
+          });
         };
 
         /* ---------------------------------------------------------
