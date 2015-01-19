@@ -155,9 +155,9 @@
                    class="checkbox checkbox-inline"
                    ng-value="false"
                    ng-model="lead.archive"
-                   ng-true-value="'archived'"
-                   ng-false-value="'active'"
-                   ng-readonly="true">
+                   ng-change="leadList.toggleArchive(lead)"
+                   ng-true-value="true"
+                   ng-false-value="false">
         </td>
         <td>
             <xs-action-buttons has-delete="true"

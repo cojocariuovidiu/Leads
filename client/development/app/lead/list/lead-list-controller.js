@@ -40,6 +40,17 @@
           vm.leads.splice(index, 1);
           lead.remove();
         };
+        vm.toggleArchive = function(lead) {
+          var copy = angular.copy(lead)
+          copy.update().then(function(result) {
+            if(result.success === true){
+              notifySvc.success('Updated the "lead".');
+            } else {
+              notifySvc.error('Unable to update "lead".');
+            }
+          })
+        };
+
   }]);
 
 })(window, window.angular);
