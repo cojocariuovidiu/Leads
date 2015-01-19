@@ -1,0 +1,55 @@
+<table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
+    <thead>
+    <tr>
+        <th width="10%">
+            When
+        </th>
+        <th width="10%">
+            Who
+        </th>
+        <th>
+            Type
+        </th>
+        <th class="hidden-xs">
+            What
+        </th>
+        <th class="hidden-xs hidden-sm">
+            Result
+        </th>
+        <th>
+            Delete
+        </th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="item in trackingMain.tracking">
+        <td>
+            {{item.tracking.when | date:'yyyy-MM-dd'}}
+        </td>
+        <td>
+            {{item.name}}
+        </td>
+        <td>
+            {{item.tracking.type}}
+        </td>
+        <td class="hidden-xs">
+            {{item.tracking.notes}}
+        </td>
+        <td class="hidden-xs hidden-sm">
+            {{item.tracking.result}}
+        </td>
+        <td>
+        <td>
+           <xs-action-buttons has-delete="true"
+                              on-delete-confirm="trackingMain.delete(item)"
+                              delete-confirm-text="Confirm"
+                              delete-cancel-text="Cancel"
+                              button-size="'xs'">
+           </xs-action-buttons>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
