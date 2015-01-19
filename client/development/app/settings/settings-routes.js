@@ -11,26 +11,21 @@
           templateUrl: 'app/settings/main/settings-main.html',
           controller: 'SettingsMainCtrl as settingsMain'
         })
-        .state('settings.codes', {
-          url: '/codes',
-          views: {
-            'display': {
-              templateUrl: 'app/settings/codes/codes-list.html',
-              controller: 'CodesMainCtrl as codesMain'
-            }
-          }/*
-          resolve: {
-            locations: function(locationSvc) {
-              return locationSvc.query();
-            }
-          }*/
-        })
         .state('settings.tracking', {
           url: '/tracking',
           views: {
             'display' : {
-              templateUrl: 'app/settings/tracking/tracking-list.html'
-              //controller: 'LinesMainCtrl as linessMain'
+              templateUrl: 'app/settings/tracking/tracking-config.html',
+              controller: 'TrackingConfigCtrl as trackingConfig'
+            }
+          }
+        })
+        .state('settings.reminder', {
+          url: '/reminder',
+          views: {
+            'display' : {
+              templateUrl: 'app/settings/reminder/reminder-config.html',
+              controller: 'ReminderConfigCtrl as reminderConfig'
             }
           }
         })
@@ -38,8 +33,8 @@
           url: '/user',
           views: {
             'display' : {
-              templateUrl: 'app/settings/user/user-edit.html',
-              controller: 'UserEditCtrl as userEdit'
+              templateUrl: 'app/settings/user/user-config.html',
+              controller: 'UserConfigCtrl as userConfig'
             }
           }
         });
