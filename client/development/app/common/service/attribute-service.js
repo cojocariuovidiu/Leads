@@ -1,13 +1,15 @@
 (function (window, angular) {  'use strict';
 
   angular
-    .module('app')
+    .module('app.services')
     .factory('attributeSvc', ['$resource', function($resource){
 
       var Attribute = $resource( '/api/attributes/:id', {id: '@id'},{
         update: { method: 'PUT' },
         save  : { method: 'POST'}
       });
+
+      // speedy attribute lookup for form reference
       Attribute.trackingTypes = [
         {type: 'Phone'},
         {type: 'Email'},
@@ -19,21 +21,19 @@
         {type: 'Accept'},
         {type: 'Decline'}
       ];
-      Attribute.leadTypes = [
-        {type: 'None'},
-        {type: 'Doctor'},
-        {type: 'Dentist'},
-        {type: 'Business'},
-        {type: 'Private'},
-        {type: 'Realtor'},
-        {type: 'Office'},
-        {type: 'Gallery'}
+      Attribute.reminderTypes = [
+        {type: 'Phone'},
+        {type: 'Email'},
+        {type: 'Meet'},
+        {type: 'ToDo'},
+        {type: 'Finish'}
       ];
       Attribute.ranks = [
-        {type: 'Hot'},
-        {type: 'Warm'},
-        {type: 'Cool'},
-        {type: 'Cold'},
+        {rank: 'Hot'},
+        {rank: 'Warm'},
+        {rank: 'Cool'},
+        {rank: 'Cold'},
+        {rank: 'Dead'}
       ];
 
       return Attribute;

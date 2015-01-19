@@ -1,7 +1,7 @@
 (function (window, angular) {  'use strict';
 
   angular
-    .module('app')
+    .module('app.services')
     .factory('trackingSvc', ['$resource', function($resource){
 
       var Tracking = $resource( 'api/tracking/:id', {id: '@id'},{
