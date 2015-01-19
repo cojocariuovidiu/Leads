@@ -1,0 +1,19 @@
+<div style="min-height:250px;">
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-xs-12">
+            <button type="button"
+                    class="btn btn-primary btn-sm pull-right"
+                    ng-click="leadEdit.update()">
+                Save
+            </button>
+        </div>
+    </div>
+
+    <form class="form-horizontal" action="">
+
+        <div ng-include="'app/lead/edit/main/list-related.html'"></div>
+
+        <div ng-include="'app/lead/edit/main/contact.html'"></div>
+
+    </form>
+</div>

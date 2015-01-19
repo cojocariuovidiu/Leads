@@ -4,14 +4,13 @@
   angular
     .module('app.lead')
     .controller('LeadListCtrl', [
-               '$state','notifySvc','leadSvc', 'leads',
+               '$state','notifySvc', 'attributeSvc', 'leadSvc', 'leads',
 
-      function ($state, notifySvc, leadSvc, leads ){
+      function ($state, notifySvc, attributeSvc, leadSvc, leads ){
 
         var vm = this;
         vm.leads = leads;
-        vm.leadTypes = leadSvc.leadTypes;
-        vm.ranks = leadSvc.ranks;
+        vm.ranks = attributeSvc.ranks;
 
         function renewLead(){
           vm.lead = new leadSvc();
@@ -22,7 +21,7 @@
 
           vm.lead.$save().then(function(result) {
             if(result){
-              vm.leads.push(result);
+              vm.leads.unshift(result);
               notifySvc.success('Successfully saved the new "lead".');
             } else {
               notifySvc.error('Oops! Unable to save "lead".');

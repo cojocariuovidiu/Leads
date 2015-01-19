@@ -11,8 +11,6 @@
           .state('leads', {
             url: '/leads',
             template: '<div ui-view><div class="text-center" style="font-size:50px;margin-top:50%;color:#dddddd;">Loading..</div></div>'
-            //templateUrl: 'app/image/image-main.html',
-            //controller: 'ImageCtrl as imageMain'
           })
           .state('leads.list', {
             url: '/list',
@@ -26,7 +24,7 @@
           })
           .state('leads.edit', {
             url: '/edit/:id',
-            templateUrl: 'app/lead/edit/lead-edit.html',
+            templateUrl: 'app/lead/edit/lead-edit-wizard.html',
             controller: 'LeadEditCtrl as leadEdit',
 
             resolve: {
