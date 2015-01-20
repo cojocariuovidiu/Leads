@@ -7,7 +7,9 @@
       var Report = $resource( '/api/reports/:id', {id: '@id'},{
         update: { method: 'PUT' },
         save  : { method: 'POST'},
-        counts: { method: 'GET', url: '/api/reports/counts'}
+        counts: { method: 'GET', url: '/api/reports/counts'},
+        trackingByLead: { method: 'GET', url: '/api/reports/generic/trackingByLead', isArray: true},
+        remindersByLead: { method: 'GET', url: '/api/reports/generic/remindersByLead', isArray: true}
       });
       return Report;
   }]);

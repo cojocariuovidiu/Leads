@@ -1,20 +1,27 @@
 <ld-panel title="Report Menu">
 
     <div>
-        <h4>Tracking</h4>
+        <h4>Activity Reports</h4>
         <ul class="list-group">
             <li class="list-group-item">
-                <a ui-sref="reports.simple( {report: 'trackingByLead',
-                                             template:'grouped-shared',
+                <a ui-sref="report.generic( {report: 'trackingByLead',
+                                             template:'tracking-by-lead.html',
                                              group: 'Lead',
                                              title: 'Tracking by Lead'})">
-
                     Tracking by Lead
                 </a>
             </li>
 
-        </ul>
+            <li class="list-group-item">
 
+                <a ui-sref="report.generic( {report: 'remindersByLead',
+                                             template:'reminders-by-lead.html',
+                                             group: 'Reminders',
+                                             title: 'Reminders by Lead'})">
+                    Reminders by Lead
+                </a>
+            </li>
+        </ul>
     </div>
 
 </ld-panel>
