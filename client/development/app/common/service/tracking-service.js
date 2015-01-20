@@ -13,19 +13,6 @@
         return this.$delete({id: this._id, track: angular.toJson(this.tracking)});
       };
 
-      // new Tracking model, mostly for resetting form
-      // tracking is sub-document[] of lead
-      Tracking.prototype.reset = function(){
-        angular.extend(this, {
-          when: undefined,
-          what: undefined,
-          type: undefined,
-          notes: undefined,
-          result: undefined
-        })
-      };
-
-
       return Tracking;
   }]);
 

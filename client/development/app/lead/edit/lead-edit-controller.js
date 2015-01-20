@@ -4,11 +4,12 @@
   angular
     .module('app.lead')
     .controller('LeadEditCtrl', [
-               '_', '$state', 'leadCacheSvc','notifySvc', 'attributeSvc', 'trackingSvc', 'reminderSvc' ,'leadSvc', 'lead',
+               '$state', 'leadCacheSvc','notifySvc', 'attributeSvc', 'trackingSvc', 'reminderSvc' ,'leadSvc', 'lead',
 
-      function (_ , $state , leadCacheSvc, notifySvc, attributeSvc, trackingSvc, reminderSvc, leadSvc, lead ) {
+      function ($state , leadCacheSvc, notifySvc, attributeSvc, trackingSvc, reminderSvc, leadSvc, lead ) {
 
         var vm = this;
+        var autoClose = false;
 
         /* ---------------------------------------------------------
          Lead Routines
@@ -22,7 +23,7 @@
           var copy = angular.copy(vm.lead);
           copy.update().then(function(result) {
             if(result.success===true){
-              notifySvc.success('Successfully updated "' + item + '".');
+              notifySvc.success('Updated "' + item + '".');
               if(cb) cb();
             } else {
               notifySvc.error('Oops! Unable to update "' + item + '"!');
@@ -31,10 +32,9 @@
         }
         // event: update main lead
         vm.update = function() {
-          updateLead('lead', function() {
-            $state.go('leads.list');
-          });
+          updateLead('lead', gotUpdate);
         };
+
         /* ---------------------------------------------------------
          Tracking Routines
          */
@@ -47,15 +47,13 @@
           // update the lead (parent document)
           updateLead('tracking', function() {
             vm.track = new trackingSvc();
-            //$state.go('leads.list');
+            gotUpdate();
           });
         };
 
         vm.deleteTracking = function(track) {
           vm.lead.deleteTracking(track);
-          updateLead('tracking', function() {
-            //$state.go('leads.list');
-          })
+          updateLead('tracking', gotUpdate);
         };
 
         /* ---------------------------------------------------------
@@ -68,16 +66,23 @@
           vm.lead.addReminder(vm.reminder);
           updateLead('reminder', function() {
             vm.reminder = new reminderSvc();
-            //$state.go('leads.list');
+            gotUpdate();
           });
         };
 
         vm.deleteReminder = function(reminder) {
           vm.lead.deleteReminder(reminder);
-          updateLead('reminder', function() {
-            //$state.go('leads.list');
-          });
+          updateLead('reminder', gotUpdate);
         };
+
+        vm.toggleReminderClosed = function(reminder) {
+          updateLead('reminder', gotUpdate)
+        };
+
+        function gotUpdate(){
+          // UI update behavior - back to list?
+          if(autoClose) $state.go('leads.list');
+        }
 
       }]);
 })(window, window.angular);

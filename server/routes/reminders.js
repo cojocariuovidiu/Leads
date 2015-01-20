@@ -25,5 +25,31 @@ module.exports = function(reminderProvider) { 'use strict';
     });
   });
 
+  // PUT /:id/:reminder
+  // update existing reminder by reminder definition & lead id (_id)
+  router.put('/:id/:reminder', function(req, res, next){
+    var opts = {
+      id:    req.params.id,
+      reminder: JSON.parse(req.params.reminder)
+      //closed: JSON.parse(req.params.closed)
+    };
+    reminder.update(opts, function(err, code) {
+      if(err) return next(err);
+      res.json( code );
+    });
+  });
+
+  router.put('/toggleClosed/:id/:reminder', function(req, res, next) {
+    // leads are owner keyed
+    var opts = {
+      id: req.params.id,
+      reminder: JSON.parse(req.params.reminder)
+    };
+    reminder.toggleClosed(opts, function (err, result) {
+      if(err) return next(err);
+      res.json(result);
+    });
+  });
+
   return router;
 };

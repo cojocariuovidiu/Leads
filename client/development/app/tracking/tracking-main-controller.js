@@ -16,10 +16,10 @@
             vm.tracking.splice(index, 1);
             notifySvc.success('Successfully delete tracking item.');
           } else {
-            notifySvc.error('Oops! Unable to delete tracking item.')
+            notifySvc.error('Oops! Unable to delete tracking item.');
           }
         });
-      }
+      };
    }]);
 
 })(window, window.angular);

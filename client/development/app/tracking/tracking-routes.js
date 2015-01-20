@@ -11,8 +11,7 @@
         url: '/tracking',
         templateUrl: 'app/tracking/tracking-main.html',
         controller: 'TrackingMainCtrl as trackingMain'
-      })
-
+      });
   }
 
 })(window, window.angular);

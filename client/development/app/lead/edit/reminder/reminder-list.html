@@ -17,6 +17,9 @@
             Notes
         </th>
         <th>
+            Done
+        </th>
+        <th>
             Delete
         </th>
 
@@ -61,25 +64,23 @@
             &nbsp;
         </td>
 
+        <td>
+            &nbsp;
+        </td>
+
     </tr>
 
     <tr ng-repeat="reminder in leadEdit.lead.reminders">
 
         <td>
             &nbsp;
-            <!--
-            <button class="btn btn-md btn-success"
-                    ng-click="leadList.edit(l);$state.go('leads.edit',{id: l._id})">
-                <i class="fa fa-pencil" style="color:#ffffff;"></i>
-            </button>
-            -->
         </td>
         <td>
             {{reminder.when | date:'yyyy-MM-dd'}}
         </td>
 
         <td>
-            {{reminder.location}}
+            {{reminder.type}}
         </td>
 
         <td>
@@ -90,7 +91,13 @@
             {{reminder.notes}}
         </td>
         <td class="hidden-xs hidden-sm">
-            {{reminder.result}}
+
+            <input type="checkbox"
+                   class="checkbox checkbox-inline"
+                   ng-value="false"
+                   ng-model="reminder.closed"
+                   ng-change="leadEdit.toggleReminderClosed(reminder)">
+
         </td>
 
         <td>

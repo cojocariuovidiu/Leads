@@ -44,7 +44,33 @@ module.exports = function(mongoWrap){ 'use strict';
         if(err) return callback(err);
         cb(null, results);
       });
+    },
+    trackingByLead: function(opts, cb) {
+      var leads = wrap.db.collection('leads');
+      leads.aggregate(
+        {$match: {owner: opts.owner}},
+        {$unwind: '$tracking'},{$group:
+          {_id: '$name', 'tracking': { $addToSet: '$tracking'} }}
+      ,function(err, result){
+         if(err) return cb(err);
+         cb(null, result);
+      })
+    },
+    remindersByLead: function(opts, cb) {
+      var leads = wrap.db.collection('leads');
+      leads.aggregate(
+        {$match: {owner: opts.owner}},
+        {$unwind: '$reminders'},{$group:
+        {_id: '$name', 'reminders': { $addToSet: '$reminders'} }}
+        ,function(err, result){
+          if(err) return cb(err);
+          cb(null, result);
+        })
     }
+
+
   }; // end return block
 };
 
+//db.leads.aggregate({$match: {owner: 'xybersolve@gmail.com'}},{$unwind: '$tracking'},{$group: {_id: '$name', 'tracking': { $addToSet: '$tracking'} }})
+//aggregate({$match: {owner: 'xybersolve@gmail.com'}},{$unwind: '$tracking'},{$group: {_id: '$lead'}})

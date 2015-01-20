@@ -48,6 +48,11 @@
         var index = this.reminders.indexOf(reminder);
         this.reminders.splice(index, 1);
       };
+      Lead.prototype.closeReminder = function(reminder){
+        var index = this.reminders.indexOf(reminder);
+        this.reminders[index].closed = true;
+      };
+
       return Lead;
   }]);
 
