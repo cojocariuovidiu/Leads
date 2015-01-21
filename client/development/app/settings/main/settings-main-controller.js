@@ -10,7 +10,8 @@
         vm.tabs =[
           {heading:'Tracking', state:'settings.tracking', active: false},
           {heading:'Reminder', state:'settings.reminder', active: false},
-          {heading:'User', state:'settings.user', active: true}
+          {heading:'User', state:'settings.user', active: true},
+          {heading:'Errors', state:'settings.errors', active: false}
         ];
         vm.go = function(state) {
           if(vm.exitFlag) return;
