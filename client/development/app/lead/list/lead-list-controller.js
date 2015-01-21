@@ -52,11 +52,15 @@
         };
 
         vm.showDetails = function(lead) {
-          var newState = !lead.showDetail;
-          angular.forEach(vm.leads, function(l) {
-            l.showDetail = false;
-          });
-          lead.showDetail = newState;
+          if(! lead.hasReminders() && ! lead.hasTracking()){
+            notifySvc.warn('This "lead" has no "tracking or "reminders to view!');
+          } else {
+            var newState = !lead.showDetail;
+            angular.forEach(vm.leads, function(l) {
+              l.showDetail = false;
+            });
+            lead.showDetail = newState;
+          }
         }
   }]);
 

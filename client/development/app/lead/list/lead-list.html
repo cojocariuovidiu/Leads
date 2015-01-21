@@ -7,29 +7,29 @@
 
 <table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
     <thead>
-    <tr>
-        <th width="10%">
-            &nbsp;
-        </th>
-        <th width="15%">
-            Name
-        </th>
-        <th width="15%" class="hidden-xs hidden-sm">
-            Info
-        </th>
-        <th width="20%" class="hidden-xs">
-            Notes
-        </th>
-        <th width="20%">
-            Rank
-        </th>
-        <th width="10%">
-            Archive
-        </th>
-        <th width="10%">
-            Delete
-        </th>
-    </tr>
+        <tr>
+            <th width="10%">
+                &nbsp;
+            </th>
+            <th width="15%">
+                Name
+            </th>
+            <th width="15%" class="hidden-xs hidden-sm">
+                Info
+            </th>
+            <th width="20%" class="hidden-xs">
+                Notes
+            </th>
+            <th width="20%">
+                Rank
+            </th>
+            <th width="10%">
+                Archive
+            </th>
+            <th width="10%">
+                Delete
+            </th>
+        </tr>
     </thead>
 
     <tbody>
@@ -190,24 +190,6 @@
                 <div ng-if="lead.hasTracking()" ng-include="'app/lead/list/sub-lists/tracking-sub-list.html'"></div>
             </td>
         </tr>
-        <!--
-        <tr ng-if="lead.showDetail===true && lead.hasReminders()">
-            <td colspan="10">
-                <div ng-include="'app/lead/list/sub-lists/reminder-sub-list.html'"></div>
-            </td>
-        </tr>
-        <tr ng-if="lead.showDetail===true && lead.hasTracking()">
-            <td colspan="10">
-                Tracking
-            </td>
-        </tr>
-        <tr ng-if="lead.showDetail===true && lead.hasTracking()">
-            <td colspan="10">
-                <div ng-include="'app/lead/list/sub-lists/tracking-sub-list.html'"></div>
-            </td>
-        </tr>
-        -->
     </tbody>
-
 </table>
 </form>
