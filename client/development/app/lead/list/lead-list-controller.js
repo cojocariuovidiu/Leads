@@ -51,6 +51,13 @@
           })
         };
 
+        vm.showDetails = function(lead) {
+          var newState = !lead.showDetail;
+          angular.forEach(vm.leads, function(l) {
+            l.showDetail = false;
+          });
+          lead.showDetail = newState;
+        }
   }]);
 
 })(window, window.angular);

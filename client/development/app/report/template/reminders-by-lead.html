@@ -1,8 +1,10 @@
+<div ng-include="'app/report/generic/generic-title.html'"></div>
+
 <div>
-    <table class="table table-responsive table-condensed table-striped table-bordered"
-           style="background-color:#eee;margin-top:20px;">
+    <table class="table table-responsive table-condensed table-bordered"
+           style="background-color:#fff;margin-top:20px;">
         <thead>
-        <tr>
+        <tr class="warning">
             <th>When</th>
             <th>Type</th>
             <th>What</th>
@@ -11,10 +13,10 @@
         </tr>
         </thead>
         <tbody ng-repeat="item in genericReport.items">
-        <tr style="background-color: #666; color: #fff;">
+        <tr class="info">
             <td colspan="6">{{item._id}}</td>
         </tr>
-        <tr ng-repeat="reminder in item.reminders">
+        <tr ng-repeat="reminder in item.reminders" class="report-row">
             <td>{{reminder.when}}</td>
             <td>{{reminder.type}}</td>
             <td>{{reminder.what}}</td>
