@@ -34,7 +34,9 @@
         var index = this.tracking.indexOf(track);
         this.tracking.splice(index, 1);
       };
-
+      Lead.prototype.hasTracking = function(){
+        return this.tracking && this.tracking.length > 0;
+      };
 
       // put new reminder on lead.reminders array
       Lead.prototype.addReminder = function(reminder){
@@ -51,6 +53,10 @@
       Lead.prototype.closeReminder = function(reminder){
         var index = this.reminders.indexOf(reminder);
         this.reminders[index].closed = true;
+      };
+
+      Lead.prototype.hasReminders = function(){
+        return this.reminders && this.reminders.length > 0;
       };
 
       return Lead;

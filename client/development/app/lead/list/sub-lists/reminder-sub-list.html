@@ -1,0 +1,36 @@
+<h5 style="color: darkblue;">
+    Reminders
+</h5>
+<table class="table table-responsive table-condensed table-bordered" style="background-color:#ffffff;margin-bottom:6px;" >
+    <tr>
+        <th width="10%">
+            When
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            What
+        </th>
+        <th>
+            Notes
+        </th>
+    </tr>
+
+    <tr ng-repeat="reminder in lead.reminders">
+        <td>
+            {{reminder.when | date:'yyyy-MM-dd'}}
+        </td>
+        <td>
+            {{reminder.type}}
+        </td>
+
+        <td>
+            {{reminder.what}}
+        </td>
+
+        <td class="hidden-xs">
+            {{reminder.notes}}
+        </td>
+    </tr>
+</table>

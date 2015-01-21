@@ -2,9 +2,9 @@
 
 <div>
     <table class="table table-responsive table-condensed table-bordered"
-           style="background-color:#eee;margin-top:20px;">
+           style="background-color:#fff;margin-top:20px;">
         <thead>
-        <tr class="report-header">
+        <tr class="warning">
             <th>When</th>
             <th>Type</th>
             <th>What</th>
@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody ng-repeat="item in genericReport.items">
-        <tr class="report-group-header">
+        <tr class="info">
             <td colspan="6">{{item._id}}</td>
         </tr>
         <tr ng-repeat="reminder in item.reminders" class="report-row">
