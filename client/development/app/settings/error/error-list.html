@@ -1,0 +1,36 @@
+<h5 style="color: darkblue;">
+    Session Errors
+</h5>
+
+<div ng-if="errorList.errors.length===0" class="alert alert-success">
+    There have been no errors caught it this session, which is a good thing.
+</div>
+
+<div ng-if="errorList.errors.length > 0">
+    <table class="table table-responsive table-condensed table-bordered" style="background-color:#ffffff;margin-bottom:6px;" >
+        <tr>
+            <th width="10%">
+                When
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Cause
+            </th>
+        </tr>
+
+        <tr ng-repeat="err in errorList.errors">
+            <td>
+                {{er.when | date:'yyyy-MM-dd'}}
+            </td>
+            <td>
+                {{err.message}}
+            </td>
+
+            <td>
+                {{err.cause}}
+            </td>
+        </tr>
+    </table>
+</div>

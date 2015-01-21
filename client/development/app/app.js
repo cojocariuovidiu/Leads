@@ -19,6 +19,8 @@
     .run(['$rootScope',  '$route',   '$location',   '$state',   '$stateParams',   'loginSvc',
       function( $rootScope,   $route,   $location,   $state,   $stateParams,   loginSvc ) {
 
+        $rootScope.errors = $rootScope.errors || [];
+
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         $rootScope.stateHistory = [];
@@ -57,11 +59,25 @@
             $rootScope.stateHistory.push(toState.name);
           }
         });
+
         $rootScope.goBack = function () {
           var prevState = $rootScope.stateHistory.length > 1 ? $rootScope.stateHistory.splice(-2)[0] : "/";
           $state.go(prevState);
         };
+    }])
+
+    // global error handler - for uncaught exceptions
+    // setting-errors could be used by customer support to solve problems
+    .factory('$exceptionHandler', ['$injector', function($injector) {
+      return function(exception, cause) {
+        var now = new Date();
+        var $rootScope = $injector.get('$rootScope');
+        // errors array is defined in app.run - above
+        $rootScope.errors.push({when: now, message: exception.message, cause: cause});
+      }
     }]);
+
+
 
 })(window, window.angular);
 

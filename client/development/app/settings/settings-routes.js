@@ -37,7 +37,17 @@
               controller: 'UserConfigCtrl as userConfig'
             }
           }
+        })
+        .state('settings.errors', {
+          url: '/errors',
+          views: {
+            'display' : {
+              templateUrl: 'app/settings/error/error-list.html',
+              controller: 'ErrorListCtrl as errorList'
+            }
+          }
         });
-  }]);
+
+    }]);
 
 })(window, window.angular);
