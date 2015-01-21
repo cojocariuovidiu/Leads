@@ -1,4 +1,26 @@
+.whiteHeader {
+  background-color: #fff;
+  color: #444;
+}
+.darkGroupHeading {
+  background-color: #808080 !important;
+  color: #fff;
+}
 body {
-    padding: 54px 0 0 0;
-    background-color: #eeeeee;
+  padding: 54px 0 0 0;
+  background-color: #eeeeee;
+}
+table {
+  background-color: f5f5f5;
+}
+.report-header {
+  background-color: #fff;
+  color: #444;
+}
+.report-group-header {
+  background-color: #808080 !important;
+  color: #fff;
+}
+.report-row {
+  background-color: #f5f5f5;
 }

@@ -1,8 +1,10 @@
+<div ng-include="'app/report/generic/generic-title.html'"></div>
+
 <div>
-    <table class="table table-responsive table-condensed table-striped table-bordered"
+    <table class="table table-responsive table-condensed table-bordered"
            style="background-color:#eee;margin-top:20px;">
         <thead>
-        <tr>
+        <tr class="report-header">
             <th>When</th>
             <th>Type</th>
             <th>What</th>
@@ -11,11 +13,11 @@
         </tr>
         </thead>
         <tbody ng-repeat="item in genericReport.items">
-            <tr style="background-color: #666; color: #fff;">
+            <tr class="report-group-header">
                 <td colspan="6">{{item._id}}</td>
             </tr>
-            <tr ng-repeat="track in item.tracking">
-                <td>{{track.when}}</td>
+            <tr ng-repeat="track in item.tracking" class="report-row">
+                <td nowrap>{{track.when | date:shortDate}}</td>
                 <td>{{track.type}}</td>
                 <td>{{track.notes}}</td>
                 <td>{{track.result}}</td>
