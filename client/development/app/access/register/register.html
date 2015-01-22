@@ -28,7 +28,7 @@
 
                         </div>
 
-                        <div ng-if="regForm.useName.$touched"
+                        <div ng-show="regForm.useName.$touched"
                              ng-messages="regForm.userName.$error"
                              ng-messages-include="app/messages/error-messages.html"
                              class="help-block has-error col-xs-offset-3">
@@ -80,7 +80,7 @@
                                    required />
                         </div>
 
-                        <div ng-if="regForm.userEmail.$touched"
+                        <div ng-show="regForm.userEmail.$touched"
                              ng-messages="regForm.userEmail.$error"
                              ng-messages-include="app/messages/error-messages.html"
                              class="help-block has-error col-xs-offset-3">
@@ -105,7 +105,7 @@
                                    required />
                         </div>
 
-                        <div ng-if="regForm.usePassword.$touched"
+                        <div ng-show="regForm.usePassword.$touched"
                              ng-messages="regForm.userPassword.$error"
                              ng-messages-include="app/messages/error-messages.html"
                              class="help-block has-error col-xs-offset-3">
@@ -130,7 +130,7 @@
                                    required />
                         </div>
 
-                        <div ng-if="regForm.userConfirmPassword.$touched"
+                        <div ng-show="regForm.userConfirmPassword.$touched"
                              ng-messages="regForm.userConfirmPassword.$error"
                              ng-messages-include="app/messages/error-messages.html"
                              class="help-block has-error col-xs-offset-3">

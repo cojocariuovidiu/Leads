@@ -25,7 +25,7 @@
                                    required />
                         </div>
 
-                        <div ng-show="loginForm.userEmail.$touched"
+                        <div ng-if="loginForm.userEmail.$touched && loginForm.userEmail.$invalid"
                              ng-messages="loginForm.userEmail.$error"
                              ng-messages-include="app/messages/error-messages.html"
                              class="help-block has-error col-xs-offset-3">
@@ -47,7 +47,7 @@
                                    required />
                         </div>
 
-                        <div ng-show="loginForm.userPassword.$touched"
+                        <div ng-show="loginForm.userPassword.$touched && loginForm.userPassword.$invalid"
                              ng-messages="loginForm.userPassword.$error"
                              ng-messages-include="app/messages/error-messages.html"
                              class="help-block has-error col-xs-offset-3">

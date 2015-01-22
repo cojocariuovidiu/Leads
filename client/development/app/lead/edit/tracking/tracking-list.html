@@ -1,103 +1,147 @@
-<table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
-    <thead>
-    <tr>
-        <th>
-            &nbsp;
-        </th>
-        <th width="10%">
-            When
-        </th>
-        <th>
-            Type
-        </th>
-        <th class="hidden-xs">
-            What
-        </th>
-        <th class="hidden-xs hidden-sm">
-            Result
-        </th>
-        <th>
-            Delete
-        </th>
+<form role="form"
+      name="trackingForm"
+      ng-submit="leadEdit.addTracking(trackingForm.$valid);"
+      novalidate>
 
-    </tr>
-    </thead>
+    <table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
+        <thead>
+        <tr>
+            <th>
+                &nbsp;
+            </th>
+            <th width="10%">
+                When
+            </th>
+            <th>
+                Type
+            </th>
+            <th class="hidden-xs">
+                What
+            </th>
+            <th class="hidden-xs hidden-sm">
+                Result
+            </th>
+            <th>
+                Delete
+            </th>
 
-    <tbody>
-    <tr>
-        <td>
-            <button class="btn btn-md btn-primary"
-                    ng-click="leadEdit.addTracking();">
-                <i class="fa fa-plus"></i>
-            </button>
-        </td>
+        </tr>
+        </thead>
 
-        <td>
-            <input type="date"
-                   ng-model="leadEdit.track.when"
-                   class="form-control input-md">
-        </td>
-        <td>
-            <select ng-options="t.type as t.type for t in leadEdit.trackingTypes"
-                    ng-model="leadEdit.track.type"
-                    default-text="Type"
-                    class="form-control"></select>
-        </td>
+        <tbody>
+        <tr>
+            <td>
+                <button type="submit"
+                        class="btn btn-md btn-primary"
+                        ng-disabled="trackingForm.$invalid"
+                        ng-submit="trackingForm.submit()">
 
-        <td class="hidden-xs">
-            <input type="text"
-                   ng-model="leadEdit.track.notes"
-                   class="form-control editable-input input-md"
-                   placeholder="Notes">
-        </td>
+                    <i class="fa fa-plus"></i>
 
-        <td class="hidden-xs hidden-sm">
-            <input type="text"
-                   ng-model="leadEdit.track.result"
-                   class="form-control editable-input input-md"
-                   placeholder="Result">
-        </td>
+                </button>
+            </td>
 
-        <td>
-            &nbsp;
-        </td>
+            <td ng-class="{'has-error': trackingForm.trackingWhen.$invalid}">
+                <input type="date"
+                       name="trackingWhen"
+                       ng-model="leadEdit.track.when"
+                       class="form-control input-md"
+                       required>
 
-    </tr>
+                <div ng-if="trackingForm.trackingWhen.$touched && trackingForm.trackingWhen.$invalid"
+                     ng-messages="trackingForm.trackingWhen.$error"
+                     ng-messages-include="app/messages/error-messages.html"
+                     class="help-block has-error">
+                </div>
+            </td>
 
-    <tr ng-repeat="track in leadEdit.lead.tracking">
+            <td ng-class="{'has-error':trackingForm.trackingType.$invalid}">
 
-        <td>
-            &nbsp;
-            <!--
-            <button class="btn btn-md btn-success"
-                    ng-click="leadList.edit(l);$state.go('leads.edit',{id: l._id})">
-                <i class="fa fa-pencil" style="color:#ffffff;"></i>
-            </button>
-            -->
-        </td>
-        <td>
-            {{track.when | date:'yyyy-MM-dd'}}
-        </td>
+                <select ng-options="t.type as t.type for t in leadEdit.trackingTypes"
+                        name="trackingType"
+                        ng-model="leadEdit.track.type"
+                        default-text="Type"
+                        class="form-control"
+                        required>
 
-        <td>
-            {{track.type}}
-        </td>
-        <td class="hidden-xs">
-            {{track.notes}}
-        </td>
-        <td class="hidden-xs hidden-sm">
-            {{track.result}}
-        </td>
+                </select>
 
-        <td>
-            <xs-action-buttons has-delete="true"
-                               on-delete-confirm="leadEdit.deleteTracking(track)"
-                               button-size="'sm'">
+                <div ng-if="trackingForm.trackingType.$touched && trackingForm.trackingType.$invalid"
+                     ng-messages="trackingForm.trackingType.$error"
+                     ng-messages-include="app/messages/error-messages.html"
+                     class="help-block has-error">
+                </div>
 
-            </xs-action-buttons>
-        </td>
+            </td>
 
-    </tr>
+            <td class="hidden-xs" ng-class="{'has-error':trackingForm.trackingNotes.$invalid}">
+                <input type="text"
+                       name="trackingNotes"
+                       ng-model="leadEdit.track.notes"
+                       class="form-control editable-input input-md"
+                       placeholder="Notes"
+                       ng-minlength="5"
+                       ng-maxlength="250"
+                       required>
 
-    </tbody>
-</table>
+                <div ng-if="trackingForm.trackingNotes.$touched && trackingForm.trackingNotes.$invalid"
+                     ng-messages="trackingForm.trackingNotes.$error"
+                     ng-messages-include="app/messages/error-messages.html"
+                     class="help-block has-error">
+
+                </div>
+
+            </td>
+
+            <td class="hidden-xs hidden-sm">
+                <input type="text"
+                       ng-model="leadEdit.track.result"
+                       class="form-control editable-input input-md"
+                       placeholder="Result">
+            </td>
+
+            <td>
+                &nbsp;
+            </td>
+
+        </tr>
+
+        <tr ng-repeat="track in leadEdit.lead.tracking">
+
+            <td>
+                &nbsp;
+                <!--
+                <button class="btn btn-md btn-success"
+                        ng-click="leadList.edit(l);$state.go('leads.edit',{id: l._id})">
+                    <i class="fa fa-pencil" style="color:#ffffff;"></i>
+                </button>
+                -->
+            </td>
+            <td>
+                {{track.when | date:'yyyy-MM-dd'}}
+            </td>
+
+            <td>
+                {{track.type}}
+            </td>
+            <td class="hidden-xs">
+                {{track.notes}}
+            </td>
+            <td class="hidden-xs hidden-sm">
+                {{track.result}}
+            </td>
+
+            <td>
+                <xs-action-buttons has-delete="true"
+                                   on-delete-confirm="leadEdit.deleteTracking(track)"
+                                   button-size="'sm'">
+
+                </xs-action-buttons>
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+</form>

@@ -23,16 +23,15 @@
     "errorhandler": "^1.2.0",
     "multer": "^0.1.4",
     "jsonwebtoken": "^1.1.2",
-    "express-jwt": "^0.4.0",
-    "async": "^0.9.0"
+    "express-jwt": "^0.4.0"
   },
   "scripts": {
     "test": "gulp lint",
     "build:dev": "NODE_ENV=development gulp build",
     "build:prod": "NODE_ENV=production gulp build",
     "start:dev": "export NODE_ENV=development && node ./leads-server.js",
+    "start:nohup": "export NODE_ENV=development && nohup node ./leads-server.js &",
     "start:prod": "export NODE_ENV=production && node ./leads-server.js",
-    "start:nohup": "export NODE_ENV=production && nohup node ./leads-server.js &",
     "forever": "export NODE_ENV=production && forever start leads-server.js",
     "gulp": "gulp",
     "archive": "gulp archive:project",

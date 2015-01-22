@@ -22,7 +22,7 @@
         templateUrl: function($stateParams) {
           return 'app/report/template/' + $stateParams.template;
         }
-      })
+      });
 
   }
 

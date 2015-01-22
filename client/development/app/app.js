@@ -74,7 +74,7 @@
         var $rootScope = $injector.get('$rootScope');
         // errors array is defined in app.run - above
         $rootScope.errors.push({when: now, message: exception.message, cause: cause});
-      }
+      };
     }]);
 
 
