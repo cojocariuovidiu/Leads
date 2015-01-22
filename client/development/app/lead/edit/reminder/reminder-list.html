@@ -1,114 +1,156 @@
-<table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
-    <thead>
-    <tr>
-        <th>
-            &nbsp;
-        </th>
-        <th width="10%">
-            When
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            What
-        </th>
-        <th class="hidden-xs">
-            Notes
-        </th>
-        <th>
-            Done
-        </th>
-        <th>
-            Delete
-        </th>
+<form role="form"
+      ng-submit="leadEdit.addReminder(reminderForm.$valid);"
+      name="reminderForm"
+      novalidate>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            <button class="btn btn-md btn-primary"
-                    ng-click="leadEdit.addReminder();">
-                <i class="fa fa-plus"></i>
-            </button>
-        </td>
-        <td>
-            <input type="date"
-                   ng-model="leadEdit.reminder.when"
-                   class="form-control input-md">
-        </td>
-        <td>
-            <select ng-options="t.type as t.type for t in leadEdit.reminderTypes"
-                    ng-model="leadEdit.reminder.type"
-                    default-text="Type"
-                    class="form-control"></select>
-        </td>
+    <table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
+        <thead>
+        <tr>
+            <th>
+                &nbsp;
+            </th>
+            <th width="10%">
+                When
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                What
+            </th>
+            <th class="hidden-xs">
+                Notes
+            </th>
+            <th>
+                Done
+            </th>
+            <th>
+                Delete
+            </th>
 
-        <td class="hidden-xs">
-            <input type="text"
-                   ng-model="leadEdit.reminder.what"
-                   class="form-control editable-input input-md"
-                   placeholder="Reminder info...">
-        </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <button type="submit"
+                        class="btn btn-md btn-primary"
+                        ng-click="reminderForm.submit();"
+                        ng-disabled="reminderForm.$invalid">
+
+                    <i class="fa fa-plus"></i>
+
+                </button>
+            </td>
+
+            <td ng-class="{'has-error': reminderForm.reminderWhen.$invalid}">
+                <input type="date"
+                       name="reminderWhen"
+                       ng-model="leadEdit.reminder.when"
+                       class="form-control input-md"
+                       required>
+
+                <div ng-if="reminderForm.reminderWhen.$touched && reminderForm.reminderWhen.$invalid"
+                     ng-messages="reminderForm.reminderWhen.$error"
+                     ng-messages-include="app/message/error-messages.html">
+                </div>
+            </td>
+
+            <td ng-class="{'has-error': reminderForm.reminderType.$invalid}">
+                <select ng-options="t.type as t.type for t in leadEdit.reminderTypes"
+                        ng-model="leadEdit.reminder.type"
+                        name="reminderType"
+                        default-text="Type"
+                        class="form-control"
+                        required>
+                </select>
+
+                <div ng-if="reminderForm.reminderType.$touched && reminderForm.reminderType.$invalid"
+                     ng-messages="reminderForm.reminderType.$error"
+                     ng-messages="app/messages/error-messages.html"
+                     class="help-block has-error">
+
+                </div>
+            </td>
+
+            <td class="hidden-xs" ng-class="{'has-error': reminderForm.reminderWhat.$invalid}">
+                <input class="form-control editable-input input-md"
+                       type="text"
+                       name="reminderWhat"
+                       ng-model="leadEdit.reminder.what"
+                       placeholder="Reminder info..."
+                       ng-maxlength="250"
+                       ng-minlength="5"
+                       required>
+
+                <div ng-if="reminderForm.reminderWhat.$touched && reminderForm.reminderWhat.$invalid"
+                     ng-messages="reminderForm.reminderWhat.$error"
+                     ng-messages-include="app/messages/error-messages.html"
+                     class="help-block has-error" >
+                </div>
+
+            </td>
 
 
-        <td class="hidden-xs">
-            <input type="text"
-                   ng-model="leadEdit.reminder.notes"
-                   class="form-control editable-input input-md"
-                   placeholder="Notes">
-        </td>
+            <td class="hidden-xs">
+                <input type="text"
+                       ng-model="leadEdit.reminder.notes"
+                       class="form-control editable-input input-md"
+                       placeholder="Notes">
+            </td>
 
-        <td>
-            &nbsp;
-        </td>
+            <td>
+                &nbsp;
+            </td>
 
-        <td>
-            &nbsp;
-        </td>
+            <td>
+                &nbsp;
+            </td>
 
-    </tr>
+        </tr>
 
-    <tr ng-repeat="reminder in leadEdit.lead.reminders">
+        <tr ng-repeat="reminder in leadEdit.lead.reminders">
 
-        <td>
-            &nbsp;
-        </td>
-        <td>
-            {{reminder.when | date:'yyyy-MM-dd'}}
-        </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                {{reminder.when | date:'yyyy-MM-dd'}}
+            </td>
 
-        <td>
-            {{reminder.type}}
-        </td>
+            <td>
+                {{reminder.type}}
+            </td>
 
-        <td>
-            {{reminder.what}}
-        </td>
+            <td>
+                {{reminder.what}}
+            </td>
 
-        <td class="hidden-xs">
-            {{reminder.notes}}
-        </td>
-        <td class="hidden-xs hidden-sm">
+            <td class="hidden-xs">
+                {{reminder.notes}}
+            </td>
+            <td class="hidden-xs hidden-sm">
 
-            <input type="checkbox"
-                   class="checkbox checkbox-inline"
-                   ng-value="false"
-                   ng-model="reminder.closed"
-                   ng-change="leadEdit.toggleReminderClosed(reminder)">
+                <input type="checkbox"
+                       class="checkbox checkbox-inline"
+                       ng-value="false"
+                       ng-model="reminder.closed"
+                       ng-change="leadEdit.toggleReminderClosed(reminder)">
 
-        </td>
+            </td>
 
-        <td>
-            <xs-action-buttons has-delete="true"
-                               on-delete-confirm="leadEdit.deleteReminder(reminder)"
-                               button-size="'sm'">
+            <td>
+                <xs-action-buttons has-delete="true"
+                                   on-delete-confirm="leadEdit.deleteReminder(reminder)"
+                                   button-size="'sm'">
 
-            </xs-action-buttons>
-        </td>
+                </xs-action-buttons>
+            </td>
 
-    </tr>
+        </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</form>
+
+
