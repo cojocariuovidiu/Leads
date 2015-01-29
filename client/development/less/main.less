@@ -1,0 +1,98 @@
+body {
+  margin: @main-container-margin;
+  padding: @toolbar-offset-height;
+  background-color: #eeeeee;
+}
+/*
+h1, h2, h3, h4, h5 {
+  font-weight: normal !important;
+  font-style: normal !important;
+  line-height: normal;
+  margin: 0;
+}
+*/
+.table {
+  background-color: @table-bg;
+  .table {
+    background-color: @table-bg;
+  }
+  thead > tr > th {
+    background-color: @table-header-color-bg;
+  }
+  tbody {
+    border-top: none !important;
+  }
+}
+
+.report-header {
+  .white-header;
+}
+.report-group-header {
+  .dark-group-heading;
+}
+.report-row {
+  background-color: #ffffff;
+}
+
+.border-bottom-off {
+  .no-border-bottom();
+}
+
+.border-top-off {
+  .no-border-top();
+}
+
+.active-link {
+  .link-hover-cursor();
+}
+  // mobile phone list rounding (top & bottom)
+
+.list-group {
+
+  .border-radius;
+
+  .list-group-item {
+    &:first-child {
+      .border-top-radius(8px);
+    }
+    &:last-child {
+      .border-bottom-radius(8px);
+    }
+    // Bootstrap Overrides
+    &.active-link {
+      &:hover {
+        background-color: lighten(#eb9316, 20%);
+        color: #ffffff;
+      }
+    }
+  }
+}
+/*
+.navbar .navbar-inner .nav li a {
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-shadow: none;
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: background 0.1s linear,opacity 0.1s linear;
+  -moz-transition: background 0.1s linear,opacity 0.1s linear;
+  -ms-transition: background 0.1s linear,opacity 0.1s linear;
+  -o-transition: background 0.1s linear,opacity 0.1s linear;
+  transition: background 0.1s linear,opacity 0.1s linear;
+  -webkit-font-smoothing: antialiased;
+  opacity: .9;
+  font-weight: 600;
+}
+.navbar .navbar-inner .nav li a:hover {
+  background: #f67d0f;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
+  opacity: 1;
+}
+*/
+
