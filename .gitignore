@@ -17,6 +17,7 @@ test
 temp.*
 .temp
 .tmp
+*.txt
 mongodump*
 dist
 about.txt
@@ -25,6 +26,7 @@ about.txt
 *.err
 *.css
 client/build
+client/development/less/utilities
 client/development/.temp
 client/development/temp
 client/development/libs/

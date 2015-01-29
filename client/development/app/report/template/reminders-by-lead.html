@@ -17,7 +17,7 @@
             <td colspan="6">{{item._id}}</td>
         </tr>
         <tr ng-repeat="reminder in item.reminders" class="report-row">
-            <td>{{reminder.when}}</td>
+            <td>{{reminder.when | date: shortDate}}</td>
             <td>{{reminder.type}}</td>
             <td>{{reminder.what}}</td>
             <td>{{reminder.notes}}</td>
