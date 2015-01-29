@@ -31,7 +31,10 @@ var gulp        = require('gulp')
   , gzip        = require('gulp-gzip')
   , stylish     = require('jshint-stylish')
   , less        = require('gulp-less')
+  , watchLess   = require('gulp-watch-less')
+  , watch       = require('gulp-watch')
   , notify      = require('gulp-notify')
+  , plumber     = require('gulp-plumber')
   , runSequence = require('run-sequence')
   , rename      = require('gulp-rename')
   , debug       = require('gulp-debug')
@@ -51,11 +54,14 @@ var dev = {
   app:  'app/',
   libs: 'libs/',
   css:  'css/',
-  archive: 'archives/'
+  less: 'less/',
+  archive: 'archives/',
+  bootstrap: 'libs/bootstrap/'
 };
 var prod = {
   base: 'client/production/',
-  app:  'app/'
+  app:  'app/',
+  css:  'css/'
 };
 
 // file paths - built off core directories
@@ -95,22 +101,9 @@ var paths = {
       // others
       dev.base + dev.libs + 'toastr/toastr.min.js'
   ],
-  libCSS: [
-      dev.base + dev.libs + 'bootstrap/dist/css/bootstrap.css',
-      dev.base + dev.libs + 'bootstrap/dist/css/bootstrap-theme.css',
-      dev.base + dev.libs + 'font-awesome/css/font-awesome.css',
-      dev.base + dev.libs + 'toastr/toastr.css',
-      dev.base + dev.libs + 'angular-ui-select/dist/select.css'
-  ],
-  appLess: [
-      dev.base + dev.css + 'styles.less'
-  ],
-  appCSS: [
-    dev.base + dev.css + 'styles.css'
-  ],
   fonts: [
-    dev.base + dev.libs + 'bootstrap/dist/fonts/*.*',
-    dev.base + dev.libs + 'fontawesome/fonts/*.*'
+    dev.base + dev.libs + 'bootstrap/dist/fonts/*',
+    dev.base + dev.libs + 'fontawesome/fonts/*'
   ],
   html: {
     index: dev.base + 'index.html',
@@ -121,7 +114,17 @@ var paths = {
     'client/development/**/*.*',
     './**/*'
   ],
-  excludes: [ // reusable ??
+  serverAll: [
+    './leads-server.js',
+    './server/**/*.js'
+  ],
+  styles:  [dev.base + dev.css + '*.css'],
+  devCss:  dev.base + dev.css,
+  prodCss: prod.base + prod.css,
+  less:    [dev.base +  dev.less + 'shoehorn.less'],
+  watchLess: [dev.base +  dev.less + '*.less'],
+
+  excludes: [
     '!.git/**/*',
     '!node_modules/**/*',
     '!vendor/**/*',
@@ -135,16 +138,9 @@ var paths = {
     '!npm-debug.log',
     '!nohup.out',
     '!nohup.err'
-  ],
-  serverAll: [
-    './leads-server.js',
-    './server/**/*.js'
-  ],
-  styles:  [dev.base + 'css/*.css'],
-  less:    [dev.base + 'css/*.less']
+  ]
 
 };
-
 gutil.log('Gulp running in: ' + environ);
 
 gulp
@@ -158,6 +154,15 @@ gulp
     });
   })
 
+  .task('clean:css', function(cb) {
+    // clean production or development
+    var cssPath = environ==='production' ? paths.prodCss + '*' : paths.devCss + '*';
+    gutil.log('Cleaning: ' + cssPath);
+    del(cssPath, function(){
+      cb(null);
+    });
+  })
+
   // ------------------------------------------------
   // Install Tasks
   //
@@ -167,7 +172,6 @@ gulp
       .src(['./bower.json'])
       .pipe(install());
   })
-
 
   // ------------------------------------------------
   // Test Tasks
@@ -201,35 +205,29 @@ gulp
   // ------------------------------------------------
   // CSS Build Tasks
   //
+
   .task('less', function() {
+    var dest = environ === 'production' ? './' + paths.prodCss : './' + paths.devCss;
+
+    logTask('less', paths.less, dest);
+
     return gulp
       .src(paths.less)
-      .pipe(less())
-      .pipe(rename('app.css'))
-      .pipe(gulp.dest(dev.css));
-  })
-  .task('css', function() {
-    // concatenate & minify style CSS files
-    logTask('css', paths.libCSS.concat(paths.appCSS), prod.base);
-
-    gulp
-      .src(paths.libCSS.concat(paths.appCSS))
-      .pipe(concat('lib.concat.css'))
-      .pipe(gulpIf(environ==='production', cssmin()))
-      .pipe(gulpIf(environ==='production' && useGzip===true, gzip()))
-      .pipe(rename('app.css'))
-      .pipe(gulp.dest(prod.base));
+      .pipe(plumber())
+      .pipe(less({
+        compress: environ === 'production' ? false : false
+      }))
+      .pipe(rename('styles.css'))
+      .pipe(gulp.dest(dest));
   })
 
   .task('fonts', function() {
     // copy over all HTML besides index.html
-    var stream = gulp
+    var basePath = environ === 'production' ? prod.base : dev.base
+    return gulp
       .src(paths.fonts)
-      .pipe(gulp.dest(prod.base + 'fonts/'));
-
-    return stream;
+      .pipe(gulp.dest(basePath + 'fonts/'));
   })
-
   // ------------------------------------------------
   // HTML Build Tasks
   //
@@ -274,31 +272,44 @@ gulp
       .pipe(zip(filename))
       .pipe(gulp.dest(dev.archive));
   })
+  // ------------------------------------------------
+  // Watch Tasks
+  //
+  .task('watch', function() {
+    // CLI feedback
+    logTask('watch:less', paths.watchLess, paths.css);
+    logTask('watch:js', paths.hintJS, []);
+
+    gulp.watch(paths.watchLess, ['less']);
+    gulp.watch(paths.hintJS, ['lint']);
+  })
 
   // ------------------------------------------------
   // Combined Tasks
   //
-  .task('default', [
-      'clean',
-      'lint',
-      'js',
-      'css',
-      'fonts',
-      'html'
-  ], function() {
-    gutil.log(gutil.colors.cyan('Build process is complete'));
+  .task('default', ['watch'], function() {
+
   })
+  .task('css', ['clean:css', 'less', 'fonts'], function() {
+
+  })
+
   .task('build', function() {
     // build sequentially
     runSequence(
       'clean',
       'lint',
       'js',
-      'css',
+      'less',
+      //'css',
       'fonts',
       'html'
     );
   });
+
+// ------------------------------------------------
+// Support Routines
+//
 
 function logTask(task, inComing, outGoing ){
   if(verbose){
