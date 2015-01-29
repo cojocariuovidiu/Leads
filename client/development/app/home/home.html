@@ -5,29 +5,35 @@
     <ul class="list-group"
         style="background-color: #ccc;">
 
-        <!-- #TODO: Use real totals in home to reflect app state -->
-
-        <li class="list-group-item list-group-item-heading">
-            <h4>
+        <li class="list-group-item">
+            <h4 class="list-group-item-heading">
                 Welcome to <span style="font-weight:bold;">Lead Manager</span>
             </h4>
         </li>
 
-        <li class="list-group-item list-group-item-info">
+        <li class="list-group-item list-group-item-info active-link"
+            ng-click="$state.go('settings.user')">
+
             Logged in as: <span class="pull-right" style="font-weight:bold;padding-right:15px;">{{home.username}}</span>
         </li>
 
-        <li class="list-group-item">
+        <li class="list-group-item active-link"
+            ng-click="$state.go('leads.list')">
+
             Leads
             <span class="badge badge-important">{{home.leads}}</span>
         </li>
 
-        <li class="list-group-item">
+        <li class="list-group-item active-link"
+            ng-click="$state.go('reminders')">
+
             Reminders
             <span class="badge badge-important">{{home.reminders}}</span>
         </li>
 
-        <li class="list-group-item">
+        <li class="list-group-item active-link"
+            ng-click="$state.go('reminders')">
+
             Tracking
             <span class="badge badge-important">{{home.tracking}}</span>
         </li>
