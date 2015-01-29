@@ -5,7 +5,7 @@
       ng-submit="leadList.addNew(leadForm.$valid);leadForm.$setUntouched();"
       novalidate>
 
-    <table class="table table-responsive table-condensed table-striped" style="background-color:#ffffff;">
+    <table class="table table-responsive table-condensed">
         <thead>
             <tr>
                 <th width="10%">
@@ -32,11 +32,14 @@
             </tr>
         </thead>
 
-        <tbody>
-
+        <tbody >
             <tr>
                 <td>
+                    <!-- #TODO: hook up tooltips -->
                     <button type="submit"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Edit this Lead including add Tracking or Reminders"
                             class="btn btn-sm btn-primary"
                             ng-disabled="leadForm.$invalid"
                             ng-click="leadForm.submit();">
@@ -44,6 +47,22 @@
                         <i class="fa fa-plus"></i>
 
                     </button>
+
+                    <button class="btn btn-sm btn-info"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="View Tracking and Reminders for this Lead"
+                            ng-click="leadList.extendedInput = ! leadList.extendedInput;">
+
+                        <div ng-switch="" on="leadList.extendedInput">
+                            <i ng-switch-when="false" class="fa fa-expand" style="color:#ffffff;"></i>
+                            <i ng-switch-when="true" class="fa fa-compress" style="color:#ffffff;"></i>
+                            <i ng-switch-default="true" class="fa fa-expand" style="color:#ffffff;"></i>
+                        </div>
+
+
+                    </button>
+
 
                 </td>
                 <td ng-class="{'has-error':leadForm.leadName.$invalid}">
@@ -108,14 +127,57 @@
                            ng-true-value="'archived'"
                            ng-false-value="'active'"
                            ng-model="leadList.lead.archive">
+                </td>
 
                 <td>
                     &nbsp;
                 </td>
             </tr>
 
+        </tbody>
+
+
+        <tbody ng-show="leadList.extendedInput==true" style="border-top:none;">
+
+            <tr style="border-top:none;">
+
+                <td style="border-top:none;">
+                    &nbsp;
+                </td>
+
+                <td style="border-top:none;">
+                    <input ui-mask="(999) 999-9999" class="form-control" ng-model="leadEdit.lead.phone1" id="phone1" type="tel" placeholder="(nnn)nnn-nnnn">
+                </td>
+
+                <td style="border-top:none;">
+                    <input class="form-control" type="text" ng-model="leadEdit.lead.phone1Ext" id="lead-phone1Ext" placeholder="Ext">
+                </td>
+
+                <td class="hidden-xs" style="border-top:none;">
+                    <input class="form-control" type="text" ng-model="leadEdit.lead.company" id="lead-company" placeholder="Company">
+                </td>
+
+                <td class="hidden-xs hidden-sm" style="border-top:none;">
+                    <input class="form-control" type="text" ng-model="leadEdit.lead.ref" id="lead-reference" placeholder="Reference">
+                </td>
+
+
+                <td style="border-top:none;">
+                    &nbsp;
+                </td>
+
+                <td style="border-top:none;">
+                    &nbsp;
+                </td>
+
+                <td style="border-top:none;">
+                   &nbsp;
+                </td>
+
+            </tr>
 
         </tbody>
+
 
             <!-- rank: leadList.filterByRank -->
         <tbody ng-repeat="lead in leadList.filtered = (leadList.leads | filter:{name: leadList.searchByName})">
@@ -131,7 +193,6 @@
                             ng-click="leadList.showDetails(lead);">
                         <i class="fa fa-info" style="color:#ffffff;"></i>
                     </button>
-
 
                 </td>
                 <td>

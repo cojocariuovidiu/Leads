@@ -15,6 +15,7 @@
          Lead Routines
          */
         vm.lead = lead;
+        vm.extendedInput = false;
         vm.ranks = attributeSvc.ranks;
 
         // save or update entities - leads & sub-documents (tracking & reminders)

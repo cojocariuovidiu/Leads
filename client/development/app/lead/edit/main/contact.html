@@ -1,9 +1,10 @@
     <div class="form-group">
-        <label class="control-label col-xs-2" for="lead-name">Name</label>
+        <label class="control-label col-xs-2" for="lead-reference">Company</label>
         <div class="col-xs-10">
-            <input class="form-control" type="text" ng-model="leadEdit.lead.name" id="lead-name" placeholder="Name">
+            <input class="form-control" type="text" ng-model="leadEdit.lead.company" id="lead-company" placeholder="Company">
         </div>
     </div>
+
     <div class="form-group">
         <label class="control-label col-xs-2" for="lead-reference">Ref.</label>
         <div class="col-xs-10">
@@ -22,18 +23,35 @@
 
     <div class="form-group">
         <label class="col-xs-2 control-label text-right">
-            Phones:
+            Phone1:
         </label>
         <div class="col-xs-5">
-            <input ui-mask="(999) 999-9999 999999" class="form-control" ng-model="leadEdit.lead.phone1" id="phone1" type="tel" placeholder="(nnn) nnn-nnnn">
+            <input ui-mask="(999) 999-9999" class="form-control" ng-model="leadEdit.lead.phone1" id="phone1" type="tel" placeholder="(nnn) nnn-nnnn">
         </div>
         <div class="col-xs-5">
-            <input ui-mask="(999) 999-9999 999999" class="form-control" ng-model="leadEdit.lead.phone2" id="phone2" type="tel" placeholder="(nnn) nnn-nnnn">
+            <input class="form-control" ng-model="leadEdit.lead.phone1Ext" id="phone1Ext" type="text" placeholder="Ext">
         </div>
+
     </div>
 
     <div class="form-group">
-        <label class="control-label col-xs-2" for="lead-email">Email</label>
+        <label class="col-xs-2 control-label text-right">
+            Phone2:
+        </label>
+        <div class="col-xs-5">
+            <input ui-mask="(999) 999-9999" class="form-control" ng-model="leadEdit.lead.phone2" id="phone2" type="tel" placeholder="(nnn) nnn-nnnn">
+        </div>
+        <div class="col-xs-5">
+            <input class="form-control" ng-model="leadEdit.lead.phone2Ext" id="phone2Ext" type="text" placeholder="Ext">
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-2" for="lead-email">
+            Email
+        </label>
         <div class="col-xs-10">
             <input class="form-control" type="email" ng-model="leadEdit.lead.email" id="lead-email" placeholder="Email">
         </div>
@@ -42,7 +60,9 @@
     <hr />
 
     <div class="form-group">
-        <label class="control-label col-xs-2" for="lead-address">Address</label>
+        <label class="control-label col-xs-2" for="lead-address">
+            Address
+        </label>
         <div class="col-xs-10">
             <input class="form-control" type="email" ng-model="leadEdit.lead.address" id="lead-address" placeholder="Address">
         </div>
