@@ -27,13 +27,14 @@
   },
   "scripts": {
     "test": "gulp lint",
+    "watch": "NODE_ENV=development && gulp",
+    "less": "NODE_ENV=development gulp css",
     "build:dev": "NODE_ENV=development gulp build",
     "build:prod": "NODE_ENV=production gulp build",
     "start:dev": "export NODE_ENV=development && node ./leads-server.js",
     "start:nohup": "export NODE_ENV=development && nohup node ./leads-server.js &",
     "start:prod": "export NODE_ENV=production && node ./leads-server.js",
-    "forever": "export NODE_ENV=production && forever start leads-server.js",
-    "gulp": "gulp",
+    "start:forever": "export NODE_ENV=production && forever start leads-server.js",
     "archive": "gulp archive:project",
     "list": "ps aux | grep node"
   },
