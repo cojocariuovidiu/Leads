@@ -81,3 +81,9 @@
   display: block;
 }
 
+.transition-setup(@duration: 1s, @ease: linear, @what: all){
+  -webkit-transition: @duration @ease @what;
+     -moz-transition: @duration @ease @what;
+       -o-transition: @duration @ease @what;
+          transition: @duration @ease @what;
+}

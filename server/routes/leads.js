@@ -34,8 +34,9 @@ module.exports = function(leadProvider) { 'use strict';
     });
   });
 
-  // save new lead
-  router.post('/', function(req, res, next) {
+
+  // save new lead router.post('/', function(req, res, next) {
+  router.post('/:id', function(req, res, next){
     var opts = {
       data:  req.body,
       owner: req.owner

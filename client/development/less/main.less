@@ -67,6 +67,22 @@ h1, h2, h3, h4, h5 {
     }
   }
 }
+// Angular Animation
+.box {
+  .transition-setup();
+  opacity: 0;
+}
+.box.ng-enter {
+  opacity: 1;
+}
+.box.ng-enter.ng-enter-active {
+  opacity: 1
+}
+.box.ng-leave {
+  opacity: 0;
+}
+
+
 /*
 .navbar .navbar-inner .nav li a {
   color: #fff;

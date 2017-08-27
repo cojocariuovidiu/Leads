@@ -9,6 +9,4 @@ module.exports = function(app, noAuthRequired) {
   app.use(expressJwt({secret:cfg.secret}).unless({
     path: noAuthRequired
   }));
-
-
 };

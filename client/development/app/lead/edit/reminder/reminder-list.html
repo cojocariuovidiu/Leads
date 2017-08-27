@@ -67,7 +67,7 @@
 
                 <div ng-if="reminderForm.reminderType.$touched && reminderForm.reminderType.$invalid"
                      ng-messages="reminderForm.reminderType.$error"
-                     ng-messages="app/messages/error-messages.html"
+                     ng-messages-include="app/messages/error-messages.html"
                      class="help-block has-error">
 
                 </div>
